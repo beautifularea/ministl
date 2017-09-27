@@ -208,6 +208,17 @@ public:
 	explicit list(const allocator_type& __a=allocator_type()) : Base(__a){}
 
 	//这个很不解啊，为啥返回类型都不一样？？？
+	/**
+	Update: 2017-9-27
+	Author: beautifularea
+	Reason: 不理解就对了，你还是没有搞清楚内存布局而已......
+	Explaination: 首先 _Node 类型是_List_node<_Tp>, _List_node_base是它的基类, 而iterator 类型为 _List_iterator<_Tp,_Tp&,_Tp*> , 而它的基类是
+	_List_iterator_base ，而根据class/struct 在C++中的内存模型可知道，iteraotr的第一个成员变量是_List_node_base* _M_node，即类型是 _List_node_base 
+	so, iterator的首指针跟_Node的类型一致，所以，可以类型转换！！！
+	
+	My God 呀， 小小的一个类型转换涉及到这么多知识，还能不能好好编程了？！
+	//所以，这样可以理解了吧，一周前的自己！
+	*/
 	iterator begin()
 	{
 		return (_Node*)(_M_node->_M_next);
