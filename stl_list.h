@@ -213,7 +213,7 @@ public:
 	Author: beautifularea
 	Reason: 不理解就对了，你还是没有搞清楚内存布局而已......
 	Explaination: 首先 _Node 类型是_List_node<_Tp>, _List_node_base是它的基类, 而iterator 类型为 _List_iterator<_Tp,_Tp&,_Tp*> , 而它的基类是
-	_List_iterator_base ，而根据class/struct 在C++中的内存模型可知道，iteraotr的第一个成员变量是_List_node_base* _M_node，即类型是 _List_node_base 
+	_List_iterator_base ，而根据class/struct 在C++中的内存模型可知道，iteraotr的第一个且只有一个成员变量是_List_node_base* _M_node，即类型是 _List_node_base 
 	so, iterator的首指针跟_Node的类型一致，所以，可以类型转换！！！
 	
 	My God 呀， 小小的一个类型转换涉及到这么多知识，还能不能好好编程了？！
